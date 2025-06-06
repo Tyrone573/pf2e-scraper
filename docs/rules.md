@@ -1,0 +1,157 @@
+# Development Rules and Best Practices
+
+This document outlines the best practices and rules for working with our Next.js template project. Following these guidelines will ensure code quality, maintainability, and consistency across the codebase.
+
+## General Principles
+
+1. **Write Clean, Readable Code**
+   - Use meaningful variable and function names
+   - Keep functions small and focused on a single responsibility
+   - Comment complex logic, but let code be self-documenting when possible
+
+2. **Prioritize Type Safety**
+   - Use TypeScript types for all variables, function parameters, and return values
+   - Avoid using `any` type unless absolutely necessary
+   - Create interfaces and types for complex data structures
+
+3. **Follow the DRY Principle (Don't Repeat Yourself)**
+   - Extract repeated logic into reusable functions or components
+   - Use utility functions from `src/frontend/lib/utils.ts` for common operations
+
+4. **Optimize for Performance**
+   - Use React Server Components when possible
+   - Implement proper data fetching strategies
+   - Minimize client-side JavaScript
+
+## React and Next.js Best Practices
+
+1. **Component Structure**
+   - Keep components small and focused
+   - Use composition over inheritance
+   - Split large components into smaller, reusable pieces
+
+2. **State Management**
+   - Use React hooks for local state
+   - Keep state as close as possible to where it's used
+   - Consider React Context for global state when necessary
+
+3. **Data Fetching**
+   - Use Server Components for data fetching when possible
+   - Implement proper error handling and loading states
+   - Use the API functions in `src/backend/api/` for Supabase operations
+
+4. **Routing**
+   - Follow the Next.js App Router conventions
+   - Use dynamic routes for parameterized pages
+   - Implement proper loading and error states for routes
+
+## Tailwind CSS Guidelines
+
+1. **Class Organization**
+   - Group related classes together (layout, typography, colors, etc.)
+   - Use the `cn()` utility for conditional classes
+   - Extract repeated class combinations into components
+
+2. **Responsive Design**
+   - Design for mobile-first, then add responsive variants
+   - Use Tailwind's responsive prefixes consistently (sm, md, lg, xl)
+   - Test all components across different screen sizes
+
+3. **Custom Styling**
+   - Extend Tailwind's theme in `tailwind.config.cjs` instead of using custom CSS
+   - Use CSS variables for theme values that need to be shared
+   - Keep custom CSS to a minimum
+
+## Supabase and Database Guidelines
+
+1. **Data Access**
+   - Use the API functions in `src/backend/api/` for all Supabase operations
+   - Implement proper error handling for all database operations
+   - Use TypeScript types for database entities
+
+2. **Security**
+   - Never expose Supabase service keys in client-side code
+   - Implement Row Level Security (RLS) policies for all tables
+   - Validate user input before sending to the database
+
+3. **Migrations**
+   - Create a new migration for each database schema change
+   - Test migrations thoroughly before applying to production
+   - Always include both `up.sql` and `down.sql` for each migration
+
+## Code Quality and Testing
+
+1. **Code Formatting**
+   - Follow the project's ESLint and Prettier configurations
+   - Run linting before committing code
+   - Fix all warnings and errors before submitting pull requests
+
+2. **Testing**
+   - Write tests for critical functionality
+   - Test components in isolation
+   - Implement end-to-end tests for critical user flows
+
+3. **Documentation**
+   - Document complex functions and components
+   - Update documentation when making significant changes
+   - Include examples for reusable components
+
+## Git Workflow
+
+1. **Branching Strategy**
+   - Create feature branches from `main`
+   - Use descriptive branch names (e.g., `feature/user-authentication`)
+   - Keep branches small and focused on a single feature or fix
+
+2. **Commits**
+   - Write clear, descriptive commit messages
+   - Make small, focused commits
+   - Reference issue numbers in commit messages when applicable
+
+3. **Pull Requests**
+   - Provide a clear description of changes
+   - Request reviews from appropriate team members
+   - Address all review comments before merging
+
+## Deployment
+
+1. **Environment Variables**
+   - Never commit sensitive environment variables
+   - Use different environment variables for development and production
+   - Document all required environment variables
+
+2. **Build Process**
+   - Test the build locally before deploying
+   - Ensure all dependencies are properly installed
+   - Verify that the application works in production mode
+
+3. **Monitoring**
+   - Implement error tracking
+   - Monitor performance metrics
+   - Set up alerts for critical issues
+
+## LLM-Specific Guidelines
+
+When using LLMs (Large Language Models) to assist with development:
+
+1. **Code Generation**
+   - Always review and understand generated code before using it
+   - Test generated code thoroughly
+   - Refactor generated code to match project conventions
+
+2. **Documentation**
+   - Use LLMs to help document complex functionality
+   - Verify that generated documentation is accurate
+   - Edit generated documentation to match project style
+
+3. **Problem Solving**
+   - Use LLMs to explore different approaches to problems
+   - Combine LLM suggestions with your own expertise
+   - Always validate LLM solutions against project requirements
+
+4. **Learning**
+   - Use LLMs to explain unfamiliar concepts or technologies
+   - Ask for examples when learning new patterns
+   - Verify information from LLMs with official documentation
+
+By following these guidelines, we can maintain a high-quality codebase that is easy to understand, extend, and maintain over time.
