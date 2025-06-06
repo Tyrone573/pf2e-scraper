@@ -1,19 +1,25 @@
-'use client';
-import React, { useState, useCallback } from 'react';
-import TraitsTable from '../components/traits/TraitsTable';
-import Image from 'next/image';
+import { useState } from 'react';
 import type { Trait } from '../backend/lib/supabase';
 
-export default function Home() {
+interface PaginatedResponse {
+  traits: Trait[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasMore: boolean;
+  };
+}
+
+export const useScraper = () => {
   const [traits, setTraits] = useState<Trait[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [scrapeStatus, setScrapeStatus] = useState<string | null>(null);
-  const [scrapeLoading, setScrapeLoading] = useState(false);
 
-  const fetchTraits = useCallback(async () => {
+  const fetchTraits = async () => {
     try {
       setLoading(true);
       setError(null);
@@ -26,11 +32,13 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
   const fetchPage = async (page: number, isInitialFetch: boolean = false) => {
     try {
-      const response = await fetch(`/api/traits?page=${page}&limit=20`);
+      const response = await fetch(`/api/traits?page=${page}&limit=20`, {
+        signal: AbortSignal.timeout(610000), // 10 minutes 10 seconds
+      });
       if (!response.ok) {
         const errorText = await response.text();
         let errorData;
@@ -43,7 +51,7 @@ export default function Home() {
           throw new Error(errorText || 'Failed to fetch traits');
         }
       }
-      const data = await response.json();
+      const data: PaginatedResponse = await response.json();
       if (!data || !Array.isArray(data.traits)) {
         throw new Error('Invalid response format from server');
       }
@@ -80,10 +88,6 @@ export default function Home() {
     console.error('Error fetching traits:', err);
   };
 
-  const fetchNextPage = async () => {
-    await fetchPage(currentPage + 1);
-  };
-
   const exportTraits = () => {
     const dataStr = JSON.stringify(traits, null, 2);
     const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
@@ -94,51 +98,14 @@ export default function Home() {
     linkElement.click();
   };
 
-  const handleScrape = async () => {
-    setScrapeLoading(true);
-    setScrapeStatus(null);
-    try {
-      const res = await fetch('/api/scrape', { method: 'POST' });
-      const data = await res.json();
-      if (data.status === 'done') {
-        setScrapeStatus('Scraping complete!');
-        await fetchTraits();
-      } else {
-        setScrapeStatus(data.message || 'An error occurred.');
-      }
-    } catch (err: any) {
-      setScrapeStatus(err.message || 'An error occurred.');
-    } finally {
-      setScrapeLoading(false);
-    }
+  return {
+    traits,
+    loading,
+    error,
+    hasMore,
+    currentPage,
+    fetchTraits,
+    fetchNextPage: () => fetchPage(currentPage + 1),
+    exportTraits,
   };
-
-  React.useEffect(() => {
-    fetchTraits();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-br from-background to-muted items-center justify-between">
-      <TraitsTable
-        traits={traits}
-        loading={loading}
-        error={error}
-        hasMore={hasMore}
-        fetchNextPage={fetchNextPage}
-        fetchTraits={fetchTraits}
-        exportTraits={exportTraits}
-        scrapeStatus={scrapeStatus}
-        scrapeLoading={scrapeLoading}
-        onScrape={handleScrape}
-      />
-      {/* Footer */}
-      <footer className="w-full flex flex-col items-center justify-center py-8 border-t mt-8 bg-background/80">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <span>Created with &lt;3 by</span>
-          <Image src="/images/chaosmonkey.png" alt="chaosmonkey" width={28} height={28} className="rounded-full" />
-        </div>
-      </footer>
-    </main>
-  );
-}
+}; 

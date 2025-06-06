@@ -100,6 +100,7 @@ This document outlines the best practices and rules for working with our Next.js
    - Document complex functions and components
    - Update documentation when making significant changes
    - Include examples for reusable components
+   - Update the project plan with current status
 
 ## Deployment
 
