@@ -14,57 +14,17 @@ We use the new App Router architecture, which provides:
 - Simplified data fetching patterns
 
 **Key files and directories:**
-- `src/frontend/app/` - Contains all pages and layouts using the App Router
-- `src/frontend/app/layout.tsx` - Root layout that wraps all pages
-- `src/frontend/app/page.tsx` - Home page component
+- `src/app/` - Contains all pages and layouts using the App Router
+- `src/app/layout.tsx` - Root layout that wraps all pages
+- `src/app/page.tsx` - Home page component
 
 **Usage:**
 ```tsx
 // Creating a new page
-// src/frontend/app/about/page.tsx
+// src/app/about/page.tsx
 export default function AboutPage() {
   return <div>About Us</div>;
 }
-```
-
-### Vite
-
-We use [Vite](https://vitejs.dev/) as our build tool, which provides:
-- Extremely fast hot module replacement (HMR)
-- Optimized builds with rollup
-- Modern development experience
-
-**Key files:**
-- `vite.config.js` - Main Vite configuration file
-- `package.json` - Contains Vite-related scripts
-
-**Configuration:**
-Our Vite setup includes:
-- React plugin for JSX support
-- Path aliases that match our TypeScript configuration
-- Development server configuration
-- Build optimization settings
-
-**Scripts:**
-```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-**Path Aliases:**
-Vite is configured with the same path aliases as TypeScript:
-```js
-// Import from frontend
-import { Button } from '@/components/ui/button';
-
-// Import from backend
-import { getUsers } from '@backend/api/users';
 ```
 
 ### Tailwind CSS v4
@@ -76,7 +36,7 @@ import { getUsers } from '@backend/api/users';
 
 **Key files:**
 - `tailwind.config.cjs` - Configuration for Tailwind
-- `src/frontend/styles/globals.css` - Global styles and Tailwind imports
+- `src/styles/globals.css` - Global styles and Tailwind imports
 
 **Usage:**
 ```tsx
@@ -91,8 +51,8 @@ import { getUsers } from '@backend/api/users';
 We use [ShadCn](https://ui.shadcn.com/) components, which are a collection of re-usable components built with Radix UI and Tailwind CSS.
 
 **Key files:**
-- `src/frontend/components/ui/` - Contains all ShadCn components
-- `src/frontend/lib/utils.ts` - Utility functions for ShadCn components
+- `src/components/ui/` - Contains all ShadCn components
+- `src/lib/utils.ts` - Utility functions for ShadCn components
 
 **Usage:**
 ```tsx

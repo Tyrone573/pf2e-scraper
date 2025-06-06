@@ -20,29 +20,25 @@ template-react/
 │
 ├── public/                    # Static assets
 │   ├── favicon.ico            # Favicon
-│   ├── images/                # Image assets
-│   └── index.html             # HTML entry point for Vite
+│   └── images/                # Image assets
 │
 ├── src/                       # Source code
-│   ├── frontend/              # Frontend code
-│   │   ├── app/               # Next.js App Router
-│   │   │   ├── layout.tsx     # Root layout
-│   │   │   ├── page.tsx       # Home page
-│   │   │   └── [feature]/     # Feature-specific routes
-│   │   │       ├── page.tsx   # Feature page
-│   │   │       └── layout.tsx # Feature layout
-│   │   │
-│   │   ├── components/        # React components
-│   │   │   ├── ui/            # ShadCn UI components
-│   │   │   └── [feature]/     # Feature-specific components
-│   │   │
-│   │   ├── lib/               # Frontend utility libraries
-│   │   │   └── utils.ts       # Utility functions
-│   │   │
-│   │   ├── styles/            # CSS styles
-│   │   │   └── globals.css    # Global styles and Tailwind imports
-│   │   │
-│   │   └── main.tsx           # Entry point for React application
+│   ├── app/                   # Next.js App Router
+│   │   ├── layout.tsx         # Root layout
+│   │   ├── page.tsx           # Home page
+│   │   └── [feature]/         # Feature-specific routes
+│   │       ├── page.tsx       # Feature page
+│   │       └── layout.tsx     # Feature layout
+│   │
+│   ├── components/            # React components
+│   │   ├── ui/                # ShadCn UI components
+│   │   └── [feature]/         # Feature-specific components
+│   │
+│   ├── lib/                   # Utility libraries
+│   │   └── utils.ts           # Utility functions
+│   │
+│   ├── styles/                # CSS styles
+│   │   └── globals.css        # Global styles and Tailwind imports
 │   │
 │   └── backend/               # Backend code
 │       ├── api/               # API functions for Supabase
@@ -56,39 +52,38 @@ template-react/
 ├── package.json               # Project dependencies and scripts
 ├── postcss.config.cjs         # PostCSS configuration
 ├── tailwind.config.cjs        # Tailwind CSS configuration
-├── tsconfig.json              # TypeScript configuration
-└── vite.config.js             # Vite configuration
+└── tsconfig.json              # TypeScript configuration
 ```
 
 ## Where to Add New Code
 
 ### New Pages
 
-Add new pages in the `src/frontend/app` directory following the Next.js App Router conventions:
+Add new pages in the `src/app` directory following the Next.js App Router conventions:
 
 - **Regular pages**: Create a `page.tsx` file in the appropriate subdirectory
   ```
-  src/frontend/app/about/page.tsx         # /about route
-  src/frontend/app/blog/[slug]/page.tsx   # /blog/:slug route
+  src/app/about/page.tsx         # /about route
+  src/app/blog/[slug]/page.tsx   # /blog/:slug route
   ```
 
 - **Layouts**: Create a `layout.tsx` file to wrap pages with common UI elements
   ```
-  src/frontend/app/dashboard/layout.tsx   # Layout for all dashboard pages
+  src/app/dashboard/layout.tsx   # Layout for all dashboard pages
   ```
 
 ### New Components
 
-- **UI Components**: Add reusable UI components in `src/frontend/components/ui/`
+- **UI Components**: Add reusable UI components in `src/components/ui/`
   ```
-  src/frontend/components/ui/button.tsx
-  src/frontend/components/ui/card.tsx
+  src/components/ui/button.tsx
+  src/components/ui/card.tsx
   ```
 
-- **Feature Components**: Add feature-specific components in `src/frontend/components/[feature]/`
+- **Feature Components**: Add feature-specific components in `src/components/[feature]/`
   ```
-  src/frontend/components/dashboard/stats-card.tsx
-  src/frontend/components/blog/post-preview.tsx
+  src/components/dashboard/stats-card.tsx
+  src/components/blog/post-preview.tsx
   ```
 
 ### New API Functions
@@ -111,7 +106,7 @@ To create a new database migration:
 
 ### New Styles
 
-- **Global Styles**: Modify `src/frontend/styles/globals.css` for global styles
+- **Global Styles**: Modify `src/styles/globals.css` for global styles
 - **Component Styles**: Use Tailwind classes directly in components
 - **Custom Tailwind Extensions**: Add to `tailwind.config.js`
 

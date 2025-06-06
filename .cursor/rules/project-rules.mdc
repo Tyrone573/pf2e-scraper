@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
 # Development Rules and Best Practices
 
 This document outlines the best practices and rules for working with our Next.js template project. Following these guidelines will ensure code quality, maintainability, and consistency across the codebase.
@@ -96,23 +101,6 @@ This document outlines the best practices and rules for working with our Next.js
    - Update documentation when making significant changes
    - Include examples for reusable components
 
-## Git Workflow
-
-1. **Branching Strategy**
-   - Create feature branches from `main`
-   - Use descriptive branch names (e.g., `feature/user-authentication`)
-   - Keep branches small and focused on a single feature or fix
-
-2. **Commits**
-   - Write clear, descriptive commit messages
-   - Make small, focused commits
-   - Reference issue numbers in commit messages when applicable
-
-3. **Pull Requests**
-   - Provide a clear description of changes
-   - Request reviews from appropriate team members
-   - Address all review comments before merging
-
 ## Deployment
 
 1. **Environment Variables**
@@ -153,5 +141,25 @@ When using LLMs (Large Language Models) to assist with development:
    - Use LLMs to explain unfamiliar concepts or technologies
    - Ask for examples when learning new patterns
    - Verify information from LLMs with official documentation
+
+## Project Documentation and Workflow Guidelines
+
+1. **Feature Request Process**
+   - Review `docs/requirements.md` for every new feature request
+   - Review `docs/projectstructure.md` to ensure proper code organization
+   - Review `docs/techstack.md` to ensure using correct tools and technologies
+   - Follow established patterns and conventions from these documents
+
+2. **Project Roadmap Management**
+   - Use `docs/project-roadmap.md` as the single source of truth for work
+   - Only perform tasks that are explicitly listed in the project roadmap
+   - Track task completion by updating the project roadmap
+   - Document any blockers or dependencies in the roadmap
+
+3. **Code Documentation**
+   - No inline comments in code
+   - Comments are only allowed at the function level
+   - Use self-documenting code practices
+   - Keep function-level comments focused on explaining complex logic or important decisions
 
 By following these guidelines, we can maintain a high-quality codebase that is easy to understand, extend, and maintain over time.
