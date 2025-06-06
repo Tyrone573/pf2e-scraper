@@ -3,7 +3,6 @@
 This is a modern Next.js template project that includes:
 
 - [Next.js](https://nextjs.org/) with App Router
-- [Vite](https://vitejs.dev/) for fast development and builds
 - [Tailwind CSS v4](https://tailwindcss.com/) for styling
 - [ShadCn](https://ui.shadcn.com/) components
 - [Lucide React](https://lucide.dev/) for icons
@@ -64,14 +63,13 @@ yarn dev
 The project follows a structured organization:
 
 - `src/` - Source code
-  - `src/frontend/` - Frontend code
-    - `src/frontend/app/` - Next.js App Router pages and layouts
-    - `src/frontend/components/` - React components
-    - `src/frontend/lib/` - Frontend utility libraries
-    - `src/frontend/styles/` - CSS styles
-  - `src/backend/` - Backend code
-    - `src/backend/api/` - API functions for Supabase
-    - `src/backend/lib/` - Backend utility libraries
+  - `src/app/` - Next.js App Router pages and layouts
+  - `src/components/` - React components
+  - `src/lib/` - Frontend utility libraries
+  - `src/styles/` - CSS styles
+- `src/backend/` - Backend code
+  - `src/backend/api/` - API functions for Supabase
+  - `src/backend/lib/` - Backend utility libraries
 - `migrations/` - Database migration files
 - `docs/` - Project documentation
 
