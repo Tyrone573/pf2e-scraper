@@ -66,7 +66,6 @@ export const useScraper = () => {
       setHasMore(data.pagination.hasMore);
       setCurrentPage(data.pagination.page);
       if (data.pagination.hasMore && isInitialFetch) {
-        await new Promise(resolve => setTimeout(resolve, 15000)); // 15s delay
         await fetchPage(page + 1, true);
       }
     } catch (err) {

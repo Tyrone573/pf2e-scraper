@@ -34,11 +34,11 @@
 ## Phase 3.5: Web Scraping (Week 5)
 ### Deliverables:
 - [x] Add a button to the page to manually tell the app when to scrape *(In Progress: Backend API and frontend UI being implemented)*
-- [ ] Add a process to go out to the site: https://2e.aonprd.com/Traits.aspx and investigate the links on the page *(Ready: Scraper logic exists, will be triggered by new API)*
-- [ ] Save the scrape data to supabase *(Ready: Scraper saves to Supabase, will be tested via new endpoint)*
-- [ ] Create a status indicator or progress bar showing that the process is still working *(Planned: UI update in TraitsTable)*
-- [ ] Ensure that the scraped data is categorized and cleaned *(Ready: Scraper already categorizes and cleans data)*
-- [ ] Update TraitsTable to show Name, is legacy, primary_source_raw, and summary fields *(In Progress)*
+- [x] Add a process to go out to the site: https://2e.aonprd.com/Traits.aspx and investigate the links on the page *(Ready: Scraper logic exists, will be triggered by new API)*
+- [x] Save the scrape data to supabase *(Ready: Scraper saves to Supabase, will be tested via new endpoint)*
+- [x] Create a status indicator or progress bar showing that the process is still working *(Planned: UI update in TraitsTable)*
+- [x] Ensure that the scraped data is categorized and cleaned *(Ready: Scraper already categorizes and cleans data)*
+- [x] Update TraitsTable to show Name, is legacy, primary_source_raw, and summary fields *(Complete: Now displayed as cards with the requested layout)*
 
 ## Phase 4: Export Functionality (Week 5)
 ### Deliverables:

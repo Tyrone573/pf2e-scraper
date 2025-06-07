@@ -40,6 +40,7 @@ export type Trait = {
   markdown?: string;
   summary_markdown?: string;
   text?: string;
+  is_replaced?: boolean;
 };
 
 export type Category = {
