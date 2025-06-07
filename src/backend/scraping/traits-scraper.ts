@@ -79,6 +79,44 @@ export class TraitsScraper {
           summary_markdown,
           text,
         } = trait;
+        // Clean the description: extract everything after the Source section in markdown
+        let clean_description = undefined;
+        if (typeof markdown === 'string') {
+          // If <sup>...</sup> is present, use everything after the closing </sup>
+          const supCloseIdx = markdown.indexOf('</sup>');
+          if (supCloseIdx !== -1) {
+            clean_description = markdown.slice(supCloseIdx + 6).trim();
+          } else {
+            // If not, look for 'pg. ' and start at the first non-numeric character after 'pg. '
+            const pgIdx = markdown.indexOf('pg. ');
+            if (pgIdx !== -1) {
+              let startIdx = pgIdx + 4;
+              // Skip any digits (page number)
+              while (startIdx < markdown.length && /\d/.test(markdown[startIdx])) {
+                startIdx++;
+              }
+              // Skip any whitespace or punctuation after the number
+              while (startIdx < markdown.length && /[\s.,;:]/.test(markdown[startIdx])) {
+                startIdx++;
+              }
+              clean_description = markdown.slice(startIdx).trim();
+            }
+          }
+        }
+        // Fallback to previous logic if not found
+        if (!clean_description && typeof text === 'string' && text.trim().length > 0) {
+          const doubleNewline = text.indexOf('\n\n');
+          if (doubleNewline !== -1) {
+            clean_description = text.slice(0, doubleNewline).trim();
+          } else {
+            const firstPeriod = text.indexOf('.');
+            if (firstPeriod !== -1) {
+              clean_description = text.slice(0, firstPeriod + 1).trim();
+            } else {
+              clean_description = text.trim();
+            }
+          }
+        }
         const created = await createTrait({
           elastic_id: hit.id,
           name,
@@ -106,6 +144,7 @@ export class TraitsScraper {
           markdown,
           summary_markdown,
           text,
+          clean_description,
           is_replaced: trait.is_replaced,
         });
         if (created) {
